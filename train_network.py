@@ -9,6 +9,7 @@ import time
 import json
 from multiprocessing import Value
 import toml
+from prodigyopt import Prodigy
 
 from tqdm import tqdm
 import torch
@@ -321,7 +322,10 @@ class NetworkTrainer:
             )
             trainable_params = network.prepare_optimizer_params(args.text_encoder_lr, args.unet_lr)
 
-        optimizer_name, optimizer_args, optimizer = train_util.get_optimizer(args, trainable_params)
+        #optimizer_name, optimizer_args, optimizer = train_util.get_optimizer(args, trainable_params)
+        optimizer_name = "Prodigy"
+        optimizer_args = "['decouple': True, 'weight_decay': 0.01, 'd_coef': 2, 'use_bias_correction': True, 'safeguard_warmup': True]"
+        optimizer = Prodigy(trainable_params)
 
         # dataloaderを準備する
         # DataLoaderのプロセス数：0はメインプロセスになる
