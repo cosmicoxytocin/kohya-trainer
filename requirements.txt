@@ -7,7 +7,7 @@ ftfy==6.1.1
 opencv-python==4.7.0.68
 einops==0.6.0
 pytorch-lightning==1.9.0
-bitsandbytes==0.39.1
+bitsandbytes==0.40.0.post4
 safetensors==0.3.1
 toml==0.10.2
 voluptuous==0.13.1
@@ -23,5 +23,7 @@ imjoy-elfinder==0.1.61
 dadaptation==3.1
 lion-pytorch==0.1.2
 lycoris-lora==1.8.1.dev3
+jax==0.4.23
+jaxlib==0.4.23
 # for kohya_ss library
 -e .
