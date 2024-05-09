@@ -12,6 +12,7 @@ import torch
 from accelerate.utils import set_seed
 from diffusers import DDPMScheduler
 from library import sdxl_model_util
+from prodigyopt import Prodigy
 
 import library.train_util as train_util
 import library.config_util as config_util
@@ -247,7 +248,10 @@ def train(args):
 
     # 学習に必要なクラスを準備する
     accelerator.print("prepare optimizer, data loader etc.")
-    _, _, optimizer = train_util.get_optimizer(args, trainable_params=params_to_optimize)
+   # _, _, optimizer = train_util.get_optimizer(args, trainable_params=params_to_optimize)
+    optimizer_name = "Prodigy"
+    optimizer_args = "['decouple': True, 'weight_decay': 0.01, 'd_coef': 2, 'use_bias_correction': True, 'safeguard_warmup': True]"
+    optimizer = Prodigy(trainable_params)
 
     # dataloaderを準備する
     # DataLoaderのプロセス数：0はメインプロセスになる
